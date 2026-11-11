@@ -1,0 +1,15 @@
+# Development-only addition for docker-compose.yml. It is NOT used by a plain "docker compose up".
+#
+# It makes PostgreSQL reachable from your own computer, so you can run the backend
+# and "dotnet ef" outside Docker. Use it by naming both files:
+#
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --wait db
+#
+# "127.0.0.1" means only this computer can connect, not other machines on the network.
+# If port 5432 is already used on your computer (for example by a local PostgreSQL),
+# change the first number, and use the same number in your connection string.
+
+services:
+  db:
+    ports:
+      - "127.0.0.1:5432:5432"
